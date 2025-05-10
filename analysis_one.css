@@ -1,0 +1,326 @@
+/* 使用伪元素实现蓝色渐层背景 */
+body::before {
+    content: '';
+    position: fixed; /* 固定背景，不随页面滚动 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #e6f0ff, #ffffff); /* 从浅蓝到白色的渐层 */
+    z-index: -1; /* 确保背景在最底层，不遮盖内容 */
+}
+
+/* 一般樣式 */
+body {
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #2d3436;
+    line-height: 1.6;
+}
+
+/* 將 Logo 按鈕去掉底線效果 */
+.logo-link {
+    text-decoration: none; /* 移除文字底線 */
+    margin-right: 40px; /* 保持與按鈕間的間距 */
+    position: relative; /* 確保不受其他樣式影響 */
+}
+
+.logo-link::after {
+    content: none !important; /* 確保不生成底線 */
+}
+
+.logo-link:hover::after {
+    content: none !important; /* 確保 hover 狀態也無底線 */
+}
+
+/* Navigation bar */
+.navbar {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo圖片樣式 */
+.logo {
+    height: 40px; /* 調整Logo大小 */
+    margin-right: 40px; /* 與按鈕保持距離 */
+}
+
+/* 導航連結樣式 */
+.navbar a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px; /* 增加內部間距 */
+    font-size: 18px;
+    margin-right: 20px; /* 增加按鈕間距 */
+    position: relative;
+}
+
+/* 滑鼠懸停效果：底部黑色橫槓 */
+.navbar a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+/* 初始狀態的橫槓為不可見 */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+/* 使 Analysis 按鈕默認為隱藏 */
+#analysis-one-btn, #analysis-two-btn {
+    display: none; /* 隱藏按鈕，直到按下 Analyze 後顯示 */
+}
+
+/* Analysis One 專屬的樣式 */
+.analysis-one-container {
+    display: flex;
+    justify-content: space-between; /* 左右區塊間空隙 */
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1250px;
+}
+
+/* 調整左邊文字區塊的寬度 */
+.analysis-one-text-section {
+    width: 100%; /* 寬度維持不變 */
+    margin: 0 auto; /* 確保區塊居中 */
+    padding: 20px; /* 保持適當的內邊距 */
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    min-height: 250px; /* 維持最小高度 */
+    max-height: 350px; /* 限制最大高度，防止超出版面 */
+    overflow-y: auto; /* 啟用垂直滾動條 */
+    box-sizing: border-box; /* 確保 padding 不影響寬度計算 */
+}
+
+
+
+.analysis-one-text-section p {
+    font-size: 16px;
+    color: #333;
+}
+
+
+/* 排行榜樣式 */
+.ranking-container {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 20px;
+
+    /* 使容器的寬度調整為全寬 */
+    width: 100%; /*確保 .ranking-container 佔據整個螢幕的寬度。*/
+    max-width: 1250px; /* 最大寬度限制 */
+    margin-left: auto; /* 使容器水平居中 */
+    margin-right: auto;
+    box-sizing: border-box; /* 內外邊距包含在寬度內 */
+}
+
+.ranking-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 250px; /*Leaderboard字樣距離下面排行榜的寬度*/
+}
+
+.ranking-item {
+    flex: 1;
+    margin: 0 10px; /*左右寬度*/
+    background: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.ranking-item::before { /*上排淺淺的那條*/
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    /* background: linear-gradient(90deg, #00b894, #00cec9);  原本的 */
+    background: linear-gradient(90deg, #00b89397, #00cecbce);
+}
+
+.ranking-item:hover { /*控制獎牌(ranking-item)跳起來的高度*/
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.ranking-number { /*#1~5*/
+    font-size: 2em;
+    font-weight: 700;
+    color: #00b894;
+    margin-bottom: 15px;
+}
+
+.ranking-content { /*之後會放Group1~5的地方*/
+    background-color: #f1f2f6;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    color: #2d3436;
+    transition: all 0.3s ease;
+
+    white-space: nowrap; /*這三為新增讓獎牌高度一樣*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ranking-item:hover .ranking-content {
+    background-color: #e17055;
+    color: #ffffff;
+}
+
+.emoji {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* 表格樣式 */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+
+    /* 使容器的寬度調整為全寬 */
+    width: 100%; /*確保 .ranking-container 佔據整個螢幕的寬度。*/
+    max-width: 1250px; /* 最大寬度限制 */
+    margin-left: auto; /* 使容器水平居中 */
+    margin-right: auto;
+    box-sizing: border-box; /* 內外邊距包含在寬度內 */
+}
+
+th, td {
+    padding: 16px; /*控制行列間的距離*/
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0; /*每個row之間的分隔線寬度*/
+}
+
+th { /* 表頭 (th) 的樣式, 最上面的row(標題)*/
+    background-color: #579abe;
+    /* background-color: var(--primary-color, #3498db); */
+    background-color: var(--primary-color, #579abe);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    padding: 16px;
+}
+
+/* 圓角應用於表格四角(此欄位為新增功能) */
+th:first-child {
+    border-top-left-radius: 8px; /* 左上角 */
+}
+th:last-child {
+    border-top-right-radius: 8px; /* 右上角 */
+}
+
+
+/*tr 是 row*/
+tr:nth-child(even) { /* row的交替背景色與懸停效果*/
+    background-color: #f7f9fc;
+}
+
+tr:hover { /*當滑鼠懸停在某行時，該行的背景色會變為較亮的藍色 (#e8f4fd)*/
+    background-color: #e8f4fd;
+}
+
+td:nth-child(2) { /*特殊樣式與字體控制(Technique ID 那個column)*/
+    font-family: monospace;
+    color: var(--secondary-color, #2ecc71);
+}
+
+/*有新增功能 讓多的文字被隱藏*/
+.description {
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: none; /* 限制初始狀態的最大寬度 */
+}
+
+.description .short-desc {
+    display: inline;
+}
+.description .full-desc {
+    display: none; /* 初始狀態下隱藏完整描述 */
+}
+
+
+/* 當展開時 */
+.description.expanded {
+    cursor: pointer;
+    white-space: normal; /* 允許換行 */
+    overflow: visible;   /* 取消隱藏 */
+    text-overflow: unset; /* 不使用省略號 */
+    max-width: none;     /* 取消寬度限制 */
+}
+.description.expanded .full-desc {
+    display: inline; /* 點擊後顯示完整描述 */
+}
+.description.expanded .short-desc {
+    display: none; /* 點擊後隱藏短描述 */
+}
+
+/* 當滑鼠懸停時加上下劃線效果 */
+.description:hover {
+    text-decoration: underline;
+}
+
+
+
+@keyframes fadeIn { /*表格行的動畫效果*/
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+tr {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+tr:nth-child(1) { animation-delay: 0.1s; }
+tr:nth-child(2) { animation-delay: 0.2s; }
+tr:nth-child(3) { animation-delay: 0.3s; }
+tr:nth-child(4) { animation-delay: 0.4s; }
+tr:nth-child(5) { animation-delay: 0.5s; }
+tr:nth-child(6) { animation-delay: 0.6s; }

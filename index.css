@@ -1,0 +1,185 @@
+/* body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ebc6b8, #9ecdf6, #e699af);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 70%);
+    z-index: -1; /*確保背景在最底層，不遮住任何內容
+} 
+*/
+
+/* body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #90b7d9, #b5a2c7, #f2a5ad);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 70%);
+    z-index: -2;
+} */
+
+/* 使用伪元素实现蓝色渐层背景 */
+body::before {
+    content: '';
+    position: fixed; /* 固定背景，不随页面滚动 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #e6f0ff, #ffffff); /* 从浅蓝到白色的渐层 */
+    z-index: -1; /* 确保背景在最底层，不遮盖内容 */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* 將 Logo 按鈕去掉底線效果 */
+.logo-link {
+    text-decoration: none; /* 移除文字底線 */
+    margin-right: 40px; /* 保持與按鈕間的間距 */
+    position: relative; /* 確保不受其他樣式影響 */
+}
+
+.logo-link::after {
+    content: none !important; /* 確保不生成底線 */
+}
+
+.logo-link:hover::after {
+    content: none !important; /* 確保 hover 狀態也無底線 */
+}
+
+/* Navigation bar */
+.navbar {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo圖片樣式 */
+.logo {
+    height: 40px; /* 調整Logo大小 */
+    margin-right: 40px; /* 與按鈕保持距離 */
+}
+
+/* 導航連結樣式 */
+.navbar a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px; /* 增加內部間距 */
+    font-size: 18px;
+    margin-right: 20px; /* 增加按鈕間距 */
+    position: relative;
+}
+
+/* 滑鼠懸停效果：底部黑色橫槓 */
+.navbar a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+/* 初始狀態的橫槓為不可見 */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+
+/* 隱藏的分析結果按鈕 */
+#analysis-one-btn, #analysis-two-btn {
+    display: none;
+}
+
+
+
+/* Main content */
+/* 要調整 container 的邊緣空白區域，你可以調整容器的 外邊距 (margin) 和 內邊距 (padding) 來達到更大的空白效果。
+根據你的需求，我會增加 margin 來讓容器與頁面邊緣之間的空間更大。 */
+
+
+.container h2 {
+    /* color: #4285f4; */
+    color: #579abe;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center; /* 保持標題文字置中 */
+}
+
+
+.container {
+    margin: 50px auto;
+    width: 60%;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 增加陰影的擴散效果 */
+    border-radius: 12px; /* 增大圓角，讓區塊更柔和 */
+    text-align: left;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* 漸層背景，從白到淡灰 */
+
+    position: relative; /* 確保容器內容在幾何背景上方 */
+    z-index: 1; /* 提升容器層級，防止被背景覆蓋 */
+}
+
+.container p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+    background-color: #ffffff; /* 將背景調成純白 */
+    padding: 20px;
+    border-radius: 12px; /* 讓段落區塊圓角保持與容器一致 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 為段落區塊添加輕微的陰影 */
+    text-align: left;
+}
+
+
+.container textarea {
+    width: 97%; /* 設置寬度為容器的90% */
+    height: 150px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 auto; /* 使用自動左右邊距來使其水平置中 */
+    display: block; /* 確保 textarea 是區塊級元素，使 margin: auto 有效 */
+    margin-bottom: 20px;
+}
+
+.container button {
+    /* background-color: #27AE60; 原本#4CAF50 */
+    /* background-color: #29a191; */
+    background-color: #579abe;
+    color: white;
+    padding: 15px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* 按鈕寬度佔滿整個容器 */
+}
+
+.container button:hover {
+    /* background-color: #45a049; */
+    /* background-color: #579abe; */
+    /* background-color: #29a191; */
+    background-color: #afd7ec;
+}

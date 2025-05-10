@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Divs</title>
+    <!-- 使用 Flask 的 url_for 函數正確呼叫 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analysis_two.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <!-- 添加Logo圖片，使用 Flask 路徑 -->
+        <a href="{{ url_for('index') }}" class="logo-link">
+            <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo" class="logo">
+        </a>
+        <!-- 動態生成路由 -->
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('overview') }}">Overview</a>
+        <a href="{{ url_for('analysis_one') }}">Analyze results one</a>
+        <a href="{{ url_for('analysis_two') }}" class="active">Analyze results two</a>
+    </div>
+    <br>
+
+    <!-- Tabs Container -->
+    <div class="container">
+        <div class="tabs">
+            <div class="tab-slider"></div>
+            <div class="tab" data-tab="Area">Area</div>
+            <div class="tab" data-tab="Exp">Exp</div>
+            <div class="tab" data-tab="Features">Features</div>
+            <div class="tab" data-tab="HackOrg">HackOrg</div>
+            <div class="tab" data-tab="Idus">Idus</div>
+            <div class="tab" data-tab="OffAct">OffAct</div>
+            <div class="tab" data-tab="Org">Org</div>
+            <div class="tab" data-tab="Purp">Purp</div>
+            <div class="tab" data-tab="SamFile">SamFile</div>
+            <div class="tab" data-tab="SecTeam">SecTeam</div>
+            <div class="tab" data-tab="Time">Time</div>
+            <div class="tab" data-tab="Tool">Tool</div>
+            <div class="tab" data-tab="Way">Way</div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="pulse"></div>
+            <div id="Area" class="content active">
+                <p>Data for Area loading...</p>
+            </div>
+            <div id="Exp" class="content">
+                <p>Data for Exp loading...</p>
+            </div>
+            <div id="Features" class="content">
+                <p>Data for Features loading...</p>
+            </div>
+            <div id="HackOrg" class="content">
+                <p>Data for HackOrg loading...</p>
+            </div>
+            <div id="Idus" class="content">
+                <p>Data for Idus loading...</p>
+            </div>
+            <div id="OffAct" class="content">
+                <p>Data for OffAct loading...</p>
+            </div>
+            <div id="Org" class="content">
+                <p>Data for Org loading...</p>
+            </div>
+            <div id="Purp" class="content">
+                <p>Data for Purp loading...</p>
+            </div>
+            <div id="SamFile" class="content">
+                <p>Data for SamFile loading...</p>
+            </div>
+            <div id="SecTeam" class="content">
+                <p>Data for SecTeam loading...</p>
+            </div>
+            <div id="Time" class="content">
+                <p>Data for Time loading...</p>
+            </div>
+            <div id="Tool" class="content">
+                <p>Data for Tool loading...</p>
+            </div>
+            <div id="Way" class="content">
+                <p>Data for Way loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Images Container -->
+    <!-- <div class="image-container">
+        <div id="imageBlock1" class="image-block">
+            <img src="{{ url_for('static', filename='images/placeholder1.jpg') }}" alt="Placeholder Image 1" class="image">
+            <p>Placeholder description for image 1</p>
+        </div>
+        <div id="imageBlock2" class="image-block">
+            <img src="{{ url_for('static', filename='images/placeholder2.jpg') }}" alt="Placeholder Image 2" class="image">
+            <p>Placeholder description for image 2</p>
+        </div>
+    </div> -->
+
+    <!-- 使用 Flask 的 url_for 正確呼叫 JS -->
+    <script src="{{ url_for('static', filename='js/analysis_two.js') }}"></script>
+</body>
+</html>

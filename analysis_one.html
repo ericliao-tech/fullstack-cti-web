@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis One</title>
+    <!-- 使用 Flask 的 url_for 函數正確呼叫 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analysis_one.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <!-- 添加Logo圖片，使用 Flask 路徑 -->
+        <a href="{{ url_for('index') }}" class="logo-link">
+            <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo" class="logo">
+        </a>
+        <!-- 動態生成路由 -->
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('overview') }}">Overview</a>
+        <a href="{{ url_for('analysis_one') }}" class="active">Analyze results one</a>
+        <a href="{{ url_for('analysis_two') }}">Analyze results two</a>
+    </div>
+    
+    <!-- Analysis One Content -->
+    <div class="analysis-one-container">
+        <!-- 左邊文字區塊 -->
+        <div class="analysis-one-text-section">
+            <p>使用者輸入的文字</p>
+        </div>
+    </div>
+
+    <!-- 排行榜區域 -->
+    <div class="ranking-container">
+        <h3>🚀 Leaderboard</h3>
+        <div class="ranking-list" id="rankingList">
+            <!-- 排名項目會在這裡動態插入 -->
+        </div>
+    </div>
+
+    <br>
+    <!-- Table Container -->
+    <div class="container">
+        <table id="mitreDataTable">
+            <thead>
+                <tr>
+                    <th>Tactic</th>
+                    <th>Technique ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="mitreTableBody">
+                <!-- Table rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 使用 Flask 的 url_for 函數正確呼叫 JS -->
+    <script src="{{ url_for('static', filename='js/analysis_one.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+
+:root {
+    --primary: #6C63FF;
+    --secondary: #4CAF50;
+    --accent: #FF6B6B;
+    --background: #F8F9FA;
+    --text: #333333;
+    /* --tab-selected-bg: #579abe; */
+    --tab-selected-bg: #a0c0d2; /* 選中 tab 的背景色，這裡是淡藍色 */
+    --tab-hover-bg: #f5f6f6; /* 滑鼠懸停在 tab 上時的背景色 */
+    --tab-slider-color: #357ae8; /* tab 滑動條的顏色 */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* 將 Logo 按鈕去掉底線效果 */
+.logo-link {
+    text-decoration: none; /* 移除文字底線 */
+    margin-right: 40px; /* 保持與按鈕間的間距 */
+    position: relative; /* 確保不受其他樣式影響 */
+}
+
+.logo-link::after {
+    content: none !important; /* 確保不生成底線 */
+}
+
+.logo-link:hover::after {
+    content: none !important; /* 確保 hover 狀態也無底線 */
+}
+
+/* Navigation bar */
+.navbar {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo圖片樣式 */
+.logo {
+    height: 40px; /* 調整Logo大小 */
+    margin-right: 40px; /* 與按鈕保持距離 */
+}
+
+/* 導航連結樣式 */
+.navbar a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px; /* 增加內部間距 */
+    font-size: 18px;
+    margin-right: 20px; /* 增加按鈕間距 */
+    position: relative;
+}
+
+/* 滑鼠懸停效果：底部黑色橫槓 */
+.navbar a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+/* 初始狀態的橫槓為不可見 */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+
+.container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.tabs {
+    display: flex; /* 將 tab 元素排列成水平橫向佈局 */
+    justify-content: space-around; /* 平均分配每個 tab 之間的空間 */
+    background-color: white; /* tabs 容器的背景色 */
+    border-radius: 50px; /* 使 tabs 容器的邊角呈現圓形 */
+    padding: 10px; /* tabs 容器內部的間距 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 增加陰影效果，讓 tabs 更有立體感 */
+    position: relative; /* 使 tabs 容器能包含絕對定位的元素，例如 tab-slider */
+    overflow: hidden; /* 隱藏超出邊界的內容，以確保圓角效果 */
+}
+.tab {
+    padding: 15px 25px; /* tab 元素的內部間距，增加點擊區域 */
+    cursor: pointer; /* 當滑鼠移動到 tab 上時顯示手形指標 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 背景色與文字顏色的過渡效果 */
+    border-radius: 25px; /* 每個 tab 的邊角呈現圓形 */
+    z-index: 1; /* 確保 tab 位於滑動條上方 */
+    font-weight: 600; /* tab 的文字字體加粗 */
+    color: var(--text); /* tab 的文字顏色，預設為深色 */
+}
+.tab:hover {
+    background-color: #bfdff1; /* 滑鼠懸停時的背景色 */
+    color: white; /* 滑鼠懸停時文字顏色變為紅色 */
+}
+.tab.active {
+    background-color: #f1f4f4a0; /* 被選中 tab 的背景色，與滑動條顏色一致 */
+    color: rgb(193, 34, 34);/* 被選中 tab 的文字顏色為紅色 */
+}
+
+
+
+.content-area {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+.content {
+    display: none;
+    animation: slideIn 0.5s ease-out;
+}
+.content.active {
+    display: block;
+}
+
+
+/* 分析頁面2的圖片區塊之css */
+.image-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.image-block {
+    text-align: center;
+    width: 45%;
+}
+.image-block img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.image-block p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: var(--text);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.highlight {
+    /* 設置強調樣式 */
+    color: var(--accent);      /* 使用強調色（紅色） */
+    font-weight: bold;         /* 設置字體加粗 */
+}
+.pulse {
+    /* 設置脈衝效果的小圓點 */
+    position: absolute;        /* 絕對定位 */
+    top: 10px;                 /* 距離上方10像素 */
+    right: 10px;               /* 距離右側10像素 */
+    width: 10px;               /* 寬度為10像素 */
+    height: 10px;              /* 高度為10像素 */
+    background-color: var(--secondary); 
+    /* 使用次要色調（綠色） */
+    border-radius: 50%;        /* 圓角邊框，讓其成為圓形 */
+    animation: pulse 2s infinite; 
+    /* 應用“pulse”動畫，2秒循環一次 */
+}
+@keyframes pulse {
+    /* 定義脈衝動畫 */
+    0% {
+      transform: scale(0.95);  /* 初始大小稍微縮小 */
+      box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); 
+      /* 初始陰影擴散為0，顏色半透明 */
+    }
+    70% {
+      transform: scale(1);     /* 將大小放大到原始大小 */
+      box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); 
+      /* 陰影擴展到10像素，但透明度逐漸減少 */
+    }
+    100% {
+      transform: scale(0.95);  /* 最後再次縮小 */
+      box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); 
+      /* 陰影回到最初狀態 */
+    }
+}

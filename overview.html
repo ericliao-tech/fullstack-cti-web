@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview Page</title>
+    <!-- 使用 Flask 的 url_for 函數正確呼叫 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/overview.css') }}">
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <!-- 添加Logo圖片，使用 Flask 路徑 -->
+        <a href="{{ url_for('index') }}" class="logo-link">
+            <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo" class="logo">
+        </a>
+        <!-- 將所有按鈕右移一格 -->
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('overview') }}">Overview</a>
+        <a href="{{ url_for('analysis_one') }}" id="analysis-one-btn" style="display:none;">Analysis result one</a>
+        <a href="{{ url_for('analysis_two') }}" id="analysis-two-btn" style="display:none;">Analysis result two</a>
+    </div>
+
+    <!-- Overview Page Content -->
+    <div class="image-container" style="text-align: center;">
+        <h2>The process of conducting the experiment</h2>
+        <!-- 使用 Flask 路徑呼叫圖片 -->
+        <img src="{{ url_for('static', filename='images/overview_image.png') }}" 
+             alt="Overview Image" style="width:80%; max-width:800px; display: block; margin: auto;">
+        <p>This is the overview page, showcasing an image placeholder.</p>
+    </div>
+
+</body>
+</html>

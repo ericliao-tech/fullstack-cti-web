@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="{{ url_for('index') }}" class="logo-link">
+            <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo" class="logo">
+        </a>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('overview') }}">Overview</a>
+        <a href="{{ url_for('analysis_one') }}" id="analysis-one-btn" style="display:none;">Analysis result one</a>
+        <a href="{{ url_for('analysis_two') }}" id="analysis-two-btn" style="display:none;">Analysis result two</a>
+    </div>
+
+    <!-- Home Page Content -->
+    <div class="container">
+        <h2>Try Model</h2>
+        <p>Enter text for analysis below:</p>
+        
+        <!-- Text Area for Input -->
+        <form action="{{ url_for('save_input') }}" method="POST">
+            <textarea name="user_input" id="user-input" placeholder="Enter your text for analysis..." rows="6" cols="50"></textarea>
+            <br>
+            <button type="submit">Analyze</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
